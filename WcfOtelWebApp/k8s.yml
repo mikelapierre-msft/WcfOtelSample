@@ -1,0 +1,83 @@
+﻿kind: Namespace
+apiVersion: v1
+metadata:
+  name: wcfotelsample
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: otel
+  namespace: wcfotelsample
+type: Opaque
+data:
+  connectionString: [Base64 Secret]
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: wcfotelwebapp
+  name: wcfotelwebapp
+  namespace: wcfotelsample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wcfotelwebapp
+  template:
+    metadata:
+      labels:
+        app: wcfotelwebapp
+    spec:
+      containers:
+      - name: wcfotelwebapp
+        image: mlregmsdtc.azurecr.io/wcfotelwebapp
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 80
+        env:       
+        - name: ApplicationInsightsConnectionString
+          valueFrom:
+            secretKeyRef:
+              name: otel
+              key: connectionString
+        - name: ServiceUrl
+          value: 'http://wcfotelservice/Service1.svc'
+        - name: OtelServiceName
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.labels['app']
+        - name: OtelServiceNamespace
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: OtelNodeName
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: OtelInstance
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+      nodeSelector:
+        kubernetes.io/os: windows
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: wcfotelwebapp
+  name: wcfotelwebapp
+  namespace: wcfotelsample
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"  
+spec:
+  type: LoadBalancer
+  selector:
+    app: wcfotelwebapp
+  ports:
+  - port: 80
+    targetPort: 80

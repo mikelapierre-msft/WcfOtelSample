@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35225.41
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfOtelWebApp", "WcfOtelWebApp\WcfOtelWebApp.csproj", "{7A99FD2D-92E5-4A4B-A815-EA62B8F35A8F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B1C8CB8D-ED15-4C91-BFF8-60C5E044D3A2} = {B1C8CB8D-ED15-4C91-BFF8-60C5E044D3A2}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfOtelService", "WcfOtelService\WcfOtelService.csproj", "{B1C8CB8D-ED15-4C91-BFF8-60C5E044D3A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A99FD2D-92E5-4A4B-A815-EA62B8F35A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A99FD2D-92E5-4A4B-A815-EA62B8F35A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A99FD2D-92E5-4A4B-A815-EA62B8F35A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A99FD2D-92E5-4A4B-A815-EA62B8F35A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1C8CB8D-ED15-4C91-BFF8-60C5E044D3A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C8CB8D-ED15-4C91-BFF8-60C5E044D3A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C8CB8D-ED15-4C91-BFF8-60C5E044D3A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C8CB8D-ED15-4C91-BFF8-60C5E044D3A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA789890-2385-4639-8AD8-E53FC1DCAC4B}
+	EndGlobalSection
+EndGlobal
