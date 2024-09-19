@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
+using System.Configuration;
 
 namespace WcfOtelService
 {
@@ -14,7 +9,7 @@ namespace WcfOtelService
     {
         public string GetData(int value)
         {
-            return string.Format("You entered: {0}", value);
+            return $"You entered: {value} (answer from {ConfigurationManager.AppSettings["OtelNodeName"]}/{ConfigurationManager.AppSettings["OtelInstance"]})";
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
